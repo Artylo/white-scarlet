@@ -9,6 +9,12 @@
 #include <cstring>
 using namespace std;
 
+/*GLOBALS*/
+const int players = 4;
+const int tiles   = 5;
+const int townNum   = tiles * 20/100;
+const int castleNum = tiles * 30/100;
+
 /*STRUCTURES*/
 struct GENERAL
 {
@@ -46,6 +52,12 @@ struct CASTLE
 };
 
 /*FUNCTIONS*/
-void matey();
+//Castle
+void print_castles(CASTLE castle[]);
+void set_owner_castle(CASTLE castle[]);
+
+//Town
+void print_towns(TOWN town[]);
+void set_owner_town(TOWN town[]);
 
 #endif // CROWN_H
