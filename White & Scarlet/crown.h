@@ -1,3 +1,6 @@
+#ifndef CROWN_H
+#define CROWN_H
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -41,3 +44,8 @@ struct CASTLE
     int training = 100;
     int trainCost = 2;
 };
+
+/*FUNCTIONS*/
+void matey();
+
+#endif // CROWN_H

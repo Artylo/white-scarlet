@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1438027388 source:d:\git\white-scarlet\white & scarlet\test\castle.cpp
+	"crown.h"
+
+1438027956 d:\git\white-scarlet\white & scarlet\test\crown.h
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<cmath>
+	<string>
+	<cstring>
+
+1438028796 source:d:\git\white-scarlet\white & scarlet\test\main.cpp
+	"crown.h"
+
+1438027388 source:d:\git\white-scarlet\white & scarlet\castle.cpp
+	"crown.h"
+
+1438027956 d:\git\white-scarlet\white & scarlet\crown.h
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<cmath>
+	<string>
+	<cstring>
+

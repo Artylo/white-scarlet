@@ -1,4 +1,5 @@
-#include "head.h"
+#include "crown.h"
+//using namespace std;
 
 /*GLOBALS*/
 const int players = 4;
