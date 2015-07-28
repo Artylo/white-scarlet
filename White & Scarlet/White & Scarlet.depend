@@ -13,14 +13,20 @@
 1438028796 source:d:\git\white-scarlet\white & scarlet\test\main.cpp
 	"crown.h"
 
-1438029176 source:d:\git\white-scarlet\white & scarlet\castle.cpp
+1438030048 source:d:\git\white-scarlet\white & scarlet\castle.cpp
 	"crown.h"
 
-1438029265 d:\git\white-scarlet\white & scarlet\crown.h
+1438088574 d:\git\white-scarlet\white & scarlet\crown.h
 	<iostream>
 	<cstdlib>
 	<ctime>
 	<cmath>
 	<string>
 	<cstring>
+
+1438030096 source:d:\git\white-scarlet\white & scarlet\town.cpp
+	"crown.h"
+
+1438088326 source:d:\git\white-scarlet\white & scarlet\main.cpp
+	"crown.h"
 

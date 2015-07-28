@@ -60,4 +60,8 @@ void set_owner_castle(CASTLE castle[]);
 void print_towns(TOWN town[]);
 void set_owner_town(TOWN town[]);
 
+//Army
+void army_add(CASTLE castle[], TOWN town[], PLAYER player[]);
+void army_remove(CASTLE castle[], TOWN town[], PLAYER player[]);
+
 #endif // CROWN_H

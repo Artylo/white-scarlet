@@ -4,21 +4,6 @@
 /*FUNCTIONS*/
 void money_distribute(CASTLE castle[], TOWN town[], PLAYER player[])
 {
-    /*
-    //Castles
-    for(int i = 0; i < castleNum; i++)
-    {
-        for(int j = 0; j < players; j++)
-        {
-                if(castle[i].owner == player[j].name)
-                {
-                    player[j].gold += castle[i].income;
-                    cout << player[j].name << " gains " << castle[i].income << " gold from castle " << castle[i].name << endl;
-                }
-        }
-    }
-    */
-
     //Towns
     for(int i = 0; i < townNum; i++)
     {
@@ -32,34 +17,7 @@ void money_distribute(CASTLE castle[], TOWN town[], PLAYER player[])
         }
     }
 }
-void army_distribute(CASTLE castle[], TOWN town[], PLAYER player[])
-{
-    //Castles
-    string place, reciever;
-    int kind, quantity;
-    cout << "[castle/general/kind/quantity]: ";
-    cin  >> place >> reciever >> kind >> quantity;
-    for(int i = 0; i < castleNum; i++)
-    {
-        if(castle[i].name == place)
-        {
-            for(int j = 0; j < players; j++)
-            {
-                for(int h = 0; h < 4; h++)
-                {
-                    if(player[j].general[h].name == reciever)
-                    {
-                        player[j].general[h].x[kind-1] += quantity;
-                        player[j].gold -= quantity*kind;
-                        cout << player[j].general[h].name << " has received " << quantity << " type " << kind << " reinforcements" << endl;
-                    }
-                }
-            }
-        }
-    }
 
-    cin.ignore(1000,'\n');
-}
 void print_players(CASTLE castle[], TOWN town[], PLAYER player[])
 {
     for(int i = 0; i < players; i++)
@@ -92,7 +50,7 @@ void set_blessing()
 {
 
 }
-void set_turn(int &TURN)
+void set_turn(int &TURN, CASTLE castle[], TOWN town[], PLAYER player[])
 {
     TURN++;
     if(TURN == 5) TURN = 1;
@@ -101,6 +59,7 @@ void set_turn(int &TURN)
     {
     case 1:
         cout << "THE FIRST PHASE HAS STARTED"  << endl;
+        money_distribute(castle,town,player);
         break;
     case 2:
         cout << "THE SECOND PHASE HAS STARTED" << endl;
@@ -288,30 +247,14 @@ void command()
     int TURN = 0;
 
     PLAYER player[players];
-    /*
-    for(int i = 0; i < players; i++)
-    {
-        cout << "PLAYER[" << i+1 << "/" << players << "]: ";
-        cin >> player[i].name;
-    }
-    */
     TOWN town[townNum];
+    CASTLE castle[castleNum];
+
     for(int i = 0; i < townNum; i++)
     {
         cout << "TOWN[" << i+1 << "/" << townNum << "]:";
         cin  >> town[i].name;
-        /*
-        bool hasOwner;
-        cout << "Does it have an owner?: ";
-        cin >> hasOwner;
-        if(hasOwner)
-        {
-            cout << towns[i].name << "'s owner (type for none): ";
-            cin >>
-        }
-        */
     }
-    CASTLE castle[castleNum];
     for(int i = 0; i < castleNum; i++)
     {
         cout << "CASTLE[" << i+1 << "/" << castleNum << "]:";
@@ -326,8 +269,9 @@ void command()
     do
     {
         /*COMMANDS*/
-        if(option == "turn") set_turn(TURN);
+        if(option == "turn") set_turn(TURN, castle, town, player);
         else if(option == "start") cout << "Welcome to White & Scarlet. Input TURN, to start the game. (? or help)" << endl;
+        else if(option == "clear") system("CLS");
 
         //Castle Commands
         else if(option == "castle owner")
@@ -347,7 +291,8 @@ void command()
 
         //Player Commands
         else if(option == "players gold") money_distribute(castle,town,player);
-        else if(option == "players army") army_distribute(castle,town,player);
+        else if(option == "players army add") army_add(castle,town,player);
+        else if(option == "players army remove") army_remove(castle,town,player);
         else if(option == "players show") print_players(castle,town,player);
 
         //Help Commands
@@ -355,16 +300,18 @@ void command()
         {
             cout << "List of current commands:"<< endl;
             cout <<
-                 "help or ?    -> Shows help screen and list of commands\n" <<
-                 "quit         -> Exits the game\n" <<
-                 "turn         -> Sets the game to the next turn\n" <<
-                 "castle owner -> Sets the new owner of a castle\n" <<
-                 "castle show  -> Shows the names and owners of all the castles\n" <<
-                 "town owner   -> Sets the new owner of a castle\n" <<
-                 "town show    -> Shows the names and owners of all the towns\n" <<
-                 "players gold -> Calculates and displays player gold income\n" <<
-                 "players army -> Calculates and displays player army growth\n" <<
-                 "players show -> Shows player stats, including owned castles and towns\n" <<
+                 "help or ?           -> Shows help screen and list of commands\n" <<
+                 "clear               -> Clears the screen\n" <<
+                 "quit                -> Exits the game\n" <<
+                 "turn                -> Sets the game to the next turn\n" <<
+                 "castle owner        -> Sets the new owner of a castle\n" <<
+                 "castle show         -> Shows the names and owners of all the castles\n" <<
+                 "town owner          -> Sets the new owner of a castle\n" <<
+                 "town show           -> Shows the names and owners of all the towns\n" <<
+                 "players gold        -> Calculates and displays player gold income\n" <<
+                 "players army remove -> Removes a quantity of units from a player's general\n" <<
+                 "players army add    -> Adds a quantity of units to a player's general\n" <<
+                 "players show        -> Shows player stats, including owned castles and towns\n" <<
                  //"\n" <<
                  endl;
         }
